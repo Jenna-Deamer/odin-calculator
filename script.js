@@ -39,6 +39,16 @@ function operate ( num1, operator, num2){
     }
 }
 
+// Need to get what value of what user clicked on.
+// Validate its a legal agr. Ex entering an op first should not do anything
+// Push number to display & listen for next input
+// Push op to display listen for final number
+// Listen for = if pressed early don't do anything
+// Display result and listen for next op press, backspace or clear
 function populateDisplay (){
+
+}
+
+function clearDisplay (){
 
 }
