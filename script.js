@@ -1,3 +1,11 @@
+// Get all buttons
+const buttons = document.querySelectorAll('.btn')
+// Attach event listeners 
+buttons.forEach(function(currentBtn){
+    currentBtn.addEventListener('click',function(){
+        console.log("Clicked " + currentBtn.value)
+    })
+})
 
 // operation variables
 let num1;

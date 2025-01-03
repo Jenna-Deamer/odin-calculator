@@ -68,12 +68,12 @@ button:hover{
     background-color: #121213;
 }
 
-#zero-btn{
+.zero-btn{
     grid-column: span 2;
 }
-#clear-btn{
+.clear-btn{
     grid-column: span 2;
 }
-#delete-btn{
+.delete-btn{
     grid-column: span 1;
 }
