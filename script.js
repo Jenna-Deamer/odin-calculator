@@ -16,11 +16,16 @@ const clearButton = document
 const equalButton = document.querySelector(".equal-btn");
 equalButton.addEventListener("click", function () {
   let sum = operate(num1, operator, num2);
-  updateNumDisplay(sum)
-  console.log(sum)
-
-
-
+  console.log(sum);
+  num1 = "";
+  operator = "";
+  num2 = "";
+  firstNumberList = [];
+  secondNumberList = [];
+  num1 = sum;
+  getNumber(num1, firstNumberList,);
+  console.log(num1)
+  updateNumDisplay(sum);
 });
 
 operands.forEach(function (currentBtn) {
