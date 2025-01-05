@@ -16,8 +16,9 @@ const clearButton = document
 const equalButton = document.querySelector(".equal-btn");
 equalButton.addEventListener("click", function () {
   let sum = operate(num1, operator, num2);
-  let toFixed = sum.toFixed(5);
-  console.log(toFixed)
+  let sumFixed = sum;
+  sumFixed =  parseFloat(sumFixed.toFixed(5))
+  console.log(sumFixed)
   // Display message if user tried to divide by 0
  if (operator === "/" && num1 == 0 && num2 == 0) {
     console.log("Dived by zero");
@@ -25,7 +26,7 @@ equalButton.addEventListener("click", function () {
     updateNumDisplay("):");
   } else {
     resetValues();
-    num1 = sum;
+    num1 = sumFixed;
     getNumber(num1, firstNumberList);
     updateNumDisplay(num1);
   }
