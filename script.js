@@ -11,85 +11,94 @@ let num2 = "";
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 const clearButton = document
-    .querySelector(".clear-btn")
-    .addEventListener("click", clearDisplay);
+  .querySelector(".clear-btn")
+  .addEventListener("click", clearDisplay);
 const equalButton = document.querySelector(".equal-btn");
+equalButton.addEventListener("click", function () {
+  let sum = operate(num1, operator, num2);
+  updateNumDisplay(sum)
+  console.log(sum)
+
+
+
+});
 
 operands.forEach(function (currentBtn) {
-    currentBtn.addEventListener("click", function () {
-        // if operator has value listen for num2
-        if (operator !== "") {
-            num2 = getNumber(num2, secondNumberList, currentBtn.value);
-            console.log("num2 " + num2)
-        }
-        // if operator doesn't have value, listen for num1
-        else {
-            num1 = getNumber(num1, firstNumberList, currentBtn.value);
-            console.log("num1 " + num1)
-        }
-    });
+  currentBtn.addEventListener("click", function () {
+    // if operator has value listen for num2
+    if (operator !== "") {
+      num2 = getNumber(num2, secondNumberList, currentBtn.value);
+    }
+    // if operator doesn't have value, listen for num1
+    else {
+      num1 = getNumber(num1, firstNumberList, currentBtn.value);
+    }
+  });
 });
 
 operators.forEach(function (currentBtn) {
-    currentBtn.addEventListener("click", function () {
-        if (num1 !== "") {
-            operator = currentBtn.value;
-            updateOperatorDisplay(operator);
-        }
-    });
+  currentBtn.addEventListener("click", function () {
+    if (num1 !== "") {
+      operator = currentBtn.value;
+      updateOperatorDisplay(operator);
+    }
+  });
 });
 
 function getNumber(numberValue, numberArray, buttonValue) {
-    numberArray.push(buttonValue);
-    // combine numbers ex 8,2 82
-    numberValue = numberArray.join("");
-    updateNumDisplay(numberValue);
-    return numberValue;
+  numberArray.push(buttonValue);
+  // combine numbers ex 8,2 82
+  numberValue = numberArray.join("");
+  updateNumDisplay(numberValue);
+  return numberValue;
 }
 
 function updateNumDisplay(numberValue) {
-    display.textContent = numberValue;
+  display.textContent = numberValue;
 }
 function updateOperatorDisplay(operator) {
-    display.textContent = operator;
+  display.textContent = operator;
 }
 
 function clearDisplay() {
-    display.textContent = "";
-    // reset variables
-    num1 = "";
-    operator = "";
-    num2 = "";
-    firstNumberList = [];
-    secondNumberList = [];
+  display.textContent = "";
+  // reset variables
+  num1 = "";
+  operator = "";
+  num2 = "";
+  firstNumberList = [];
+  secondNumberList = [];
 }
 // basic math functions
 function add(num1, num2) {
-    return num1 + num2;
+  return num1 + num2;
 }
 
 function subtract(num1, num2) {
-    return num1 - num2;
+  return num1 - num2;
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+  return num1 * num2;
 }
 
 function divide(num1, num2) {
-    return num1 / num2;
+  return num1 / num2;
 }
 
 function operate(num1, operator, num2) {
-    if (operator === "+") {
-        add(num1, num2);
-    } else if (operator === "-") {
-        subtract(num1, num2);
-    } else if (operator === "*") {
-        multiply(num1, num2);
-    } else if (operator === "/") {
-        divide(num1, num2);
-    } else {
-        return "Error invalid or missing operator";
-    }
+  console.log("operate called");
+  // make num1 & num2 numeric
+
+  if (operator === "+") {
+    return add(num1, num2);
+  } else if (operator === "-") {
+    return subtract(num1, num2);
+  } else if (operator === "x") {
+    return multiply(num1, num2);
+  } else if (operator === "/") {
+    return divide(num1, num2);
+  } else {
+    return "Error invalid or missing operator";
+  }
 }
