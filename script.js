@@ -16,26 +16,20 @@ const clearButton = document
 const equalButton = document.querySelector(".equal-btn");
 equalButton.addEventListener("click", function () {
   let sum = operate(num1, operator, num2);
-  if (sum === "):"){
+  console.log("Sum " + sum)
+  // Update display & set num1 to sum for use in the next operation
+    let fixedSum = sum.toFixed(5);
+    console.log(fixedSum);
     num1 = "";
     operator = "";
     num2 = "";
     firstNumberList = [];
     secondNumberList = [];
-  }
-  else{
-    console.log(sum);
-    num1 = "";
-    operator = "";
-    num2 = "";
-    firstNumberList = [];
-    secondNumberList = [];
-    num1 = sum;
-    getNumber(num1, firstNumberList,);
-    console.log(num1)
-    updateNumDisplay(sum);
-  }
-
+    num1 = fixedSum;
+    getNumber(num1, firstNumberList);
+    console.log(num1);
+    updateNumDisplay(fixedSum);
+  
 });
 
 operands.forEach(function (currentBtn) {
@@ -103,9 +97,9 @@ function divide(num1, num2) {
 
 function operate(num1, operator, num2) {
   console.log("operate called");
-  console.log("num1: " + num1)
-  console.log("OP:" + operator)
-  console.log("num2: " + num2)
+  console.log("num1: " + num1);
+  console.log("OP:" + operator);
+  console.log("num2: " + num2);
   // make num1 & num2 numeric
 
   if (operator === "+") {
@@ -115,14 +109,8 @@ function operate(num1, operator, num2) {
   } else if (operator === "x") {
     return multiply(num1, num2);
   } else if (operator === "/") {
-    if(!num1 === 0 && !num2 === 0){
       return divide(num1, num2);
-    }
-    else{
-      return display.textContent = "):";
-    }
-
   } else {
-    return "Error invalid or missing operator";
+    console.log("Error invalid or missing operator");
   }
 }
