@@ -12,24 +12,23 @@ const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 const clearButton = document
   .querySelector(".clear-btn")
-  .addEventListener("click", clearDisplay);
+  .addEventListener("click", clearDisplayAndValues);
 const equalButton = document.querySelector(".equal-btn");
 equalButton.addEventListener("click", function () {
   let sum = operate(num1, operator, num2);
-  console.log("Sum " + sum)
-  // Update display & set num1 to sum for use in the next operation
-    let fixedSum = sum.toFixed(5);
-    console.log(fixedSum);
-    num1 = "";
-    operator = "";
-    num2 = "";
-    firstNumberList = [];
-    secondNumberList = [];
-    num1 = fixedSum;
+  let toFixed = sum.toFixed(5);
+  console.log(toFixed)
+  // Display message if user tried to divide by 0
+ if (operator === "/" && num1 == 0 && num2 == 0) {
+    console.log("Dived by zero");
+    resetValues();
+    updateNumDisplay("):");
+  } else {
+    resetValues();
+    num1 = sum;
     getNumber(num1, firstNumberList);
-    console.log(num1);
-    updateNumDisplay(fixedSum);
-  
+    updateNumDisplay(num1);
+  }
 });
 
 operands.forEach(function (currentBtn) {
@@ -69,9 +68,16 @@ function updateOperatorDisplay(operator) {
   display.textContent = operator;
 }
 
-function clearDisplay() {
+function clearDisplayAndValues() {
   display.textContent = "";
   // reset variables
+  num1 = "";
+  operator = "";
+  num2 = "";
+  firstNumberList = [];
+  secondNumberList = [];
+}
+function resetValues() {
   num1 = "";
   operator = "";
   num2 = "";
@@ -109,7 +115,7 @@ function operate(num1, operator, num2) {
   } else if (operator === "x") {
     return multiply(num1, num2);
   } else if (operator === "/") {
-      return divide(num1, num2);
+    return divide(num1, num2);
   } else {
     console.log("Error invalid or missing operator");
   }
