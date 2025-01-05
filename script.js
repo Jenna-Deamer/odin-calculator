@@ -17,14 +17,16 @@ const equalButton = document.querySelector(".equal-btn");
 equalButton.addEventListener("click", function () {
   let sum = operate(num1, operator, num2);
   let sumFixed = sum;
-  sumFixed =  parseFloat(sumFixed.toFixed(5))
-  console.log(sumFixed)
+  // Truncate decimals, use parseFloat to turn it back to a number removing padding zeros
+  sumFixed = parseFloat(sumFixed.toFixed(5));
   // Display message if user tried to divide by 0
- if (operator === "/" && num1 == 0 && num2 == 0) {
+  if (operator === "/" && num1 == 0 && num2 == 0) {
     console.log("Dived by zero");
     resetValues();
     updateNumDisplay("):");
-  } else {
+  }
+  // Use sum as num1 for next operation & display it
+  else {
     resetValues();
     num1 = sumFixed;
     getNumber(num1, firstNumberList);
@@ -38,6 +40,7 @@ operands.forEach(function (currentBtn) {
     if (operator !== "") {
       num2 = getNumber(num2, secondNumberList, currentBtn.value);
     }
+
     // if operator doesn't have value, listen for num1
     else {
       num1 = getNumber(num1, firstNumberList, currentBtn.value);
@@ -107,8 +110,9 @@ function operate(num1, operator, num2) {
   console.log("num1: " + num1);
   console.log("OP:" + operator);
   console.log("num2: " + num2);
-  // make num1 & num2 numeric
-
+// Make num1 & num2 numeric 
+  num1 = parseFloat(num1);
+  num2 = parseFloat(num2);
   if (operator === "+") {
     return add(num1, num2);
   } else if (operator === "-") {
