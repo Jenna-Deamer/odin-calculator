@@ -16,16 +16,26 @@ const clearButton = document
 const equalButton = document.querySelector(".equal-btn");
 equalButton.addEventListener("click", function () {
   let sum = operate(num1, operator, num2);
-  console.log(sum);
-  num1 = "";
-  operator = "";
-  num2 = "";
-  firstNumberList = [];
-  secondNumberList = [];
-  num1 = sum;
-  getNumber(num1, firstNumberList,);
-  console.log(num1)
-  updateNumDisplay(sum);
+  if (sum === "):"){
+    num1 = "";
+    operator = "";
+    num2 = "";
+    firstNumberList = [];
+    secondNumberList = [];
+  }
+  else{
+    console.log(sum);
+    num1 = "";
+    operator = "";
+    num2 = "";
+    firstNumberList = [];
+    secondNumberList = [];
+    num1 = sum;
+    getNumber(num1, firstNumberList,);
+    console.log(num1)
+    updateNumDisplay(sum);
+  }
+
 });
 
 operands.forEach(function (currentBtn) {
@@ -93,6 +103,9 @@ function divide(num1, num2) {
 
 function operate(num1, operator, num2) {
   console.log("operate called");
+  console.log("num1: " + num1)
+  console.log("OP:" + operator)
+  console.log("num2: " + num2)
   // make num1 & num2 numeric
 
   if (operator === "+") {
@@ -102,7 +115,13 @@ function operate(num1, operator, num2) {
   } else if (operator === "x") {
     return multiply(num1, num2);
   } else if (operator === "/") {
-    return divide(num1, num2);
+    if(!num1 === 0 && !num2 === 0){
+      return divide(num1, num2);
+    }
+    else{
+      return display.textContent = "):";
+    }
+
   } else {
     return "Error invalid or missing operator";
   }
