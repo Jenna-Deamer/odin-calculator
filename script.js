@@ -39,6 +39,15 @@ operands.forEach(function (currentBtn) {
     if (operator !== "") {
       num2 = getNumber(num2, secondNumberList, currentBtn.value);
     }
+    if(num2 !== "" && operator !== "") {
+      console.log("Num2 and OP have values")
+      // disable operator buttons
+      operators.forEach(function (currentBtn) {
+        currentBtn.classList.add('disabled');
+        currentBtn.disabled = true;
+       
+      });
+    }
 
     // if operator doesn't have value, listen for num1
     else {
@@ -79,6 +88,8 @@ function clearDisplayAndValues() {
   num2 = "";
   firstNumberList = [];
   secondNumberList = [];
+  // reset visual for disabled buttons
+ 
 }
 function resetValues() {
   num1 = "";
@@ -86,6 +97,12 @@ function resetValues() {
   num2 = "";
   firstNumberList = [];
   secondNumberList = [];
+  // Enable buttons & reset visual
+     operators.forEach(function (currentBtn) {
+      currentBtn.classList.remove('disabled');
+      currentBtn.disabled = false;
+     
+    });
 }
 // basic math functions
 function add(num1, num2) {
